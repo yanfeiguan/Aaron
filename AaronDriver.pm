@@ -1230,7 +1230,7 @@ sub print_status {
 
     @finished && do {$msg .= "The following AARON are finished: \n";};
     for my $geometry(@finished) {
-        $msg .= "$geometry finished normoally\n";
+        $msg .= "$geometry finished normally\n";
     }
 
     @running && do {$msg .= "The following jobs are running:\n";};

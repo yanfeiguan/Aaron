@@ -9,7 +9,9 @@ use AaronDriver qw(make_directories get_sub get_status
 use AaronOutput qw(header restart_header print_message print_params
                    $parent clean_up close_logfile clean_up &init_log);
 
-#initiate AARO, reading informations need from command line and files
+#Check to make sure $AARON_HOME is defined!
+#
+#initiate AARON, reading needed information from command line and input files
 init_main();
 
 init_log();
