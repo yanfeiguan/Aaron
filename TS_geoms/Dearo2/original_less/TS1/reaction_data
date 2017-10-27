@@ -1,0 +1,8 @@
+Name=dearomatization
+Description=Dearomatization of XXX by XXX (see DOI XXX)
+subdirs=R S
+charge_mult=0 1
+bond_constraint=10 17
+first_cat_atom=27
+key_atoms=27,28,29;65,46;
+key_atoms_description=two hydrogen bonding nitrogens and amine nitrogen, starting with nitrogen farthest from amine

@@ -1,0 +1,10 @@
+#!/bin/tcsh
+
+foreach geom (`cat todo`)
+        echo "23\n$geom" > temp
+	../orientor.pl $geom.xyz | head -n-22 | tail -n23 >> temp
+	#../orientor.pl $geom.xyz  > temp
+	mv temp $geom.xyz
+end
+
+

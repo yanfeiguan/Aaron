@@ -1,0 +1,51 @@
+#!/usr/bin/perl -w
+
+use strict;
+use lib $ENV{'AARON'};
+
+use AaronInit qw(init_main %arg_in %arg_parser grab_cata_coords $system);
+use AaronDriver qw(make_directories get_sub get_status 
+                   run_stepX print_status analyze_result count_time);
+use AaronOutput qw(header restart_header print_message print_params
+                   $parent clean_up close_logfile clean_up &init_log);
+
+#initiate AARO, reading informations need from command line and files
+init_main();
+
+init_log();
+if (! $arg_parser{restart}) {
+    header();
+    print_params();
+}else {
+    restart_header();
+}
+
+
+my $sub_got = get_sub();
+
+my $Aaron_running = 1;
+
+clean_up($parent);
+
+while ($Aaron_running) {
+    
+    if ($arg_in{catalyst}) {
+        make_directories('map');
+    }
+    if ($sub_got) {
+        make_directories('sub');
+    }
+    get_status();
+    run_stepX();
+    $Aaron_running = print_status();
+    analyze_result();
+
+    my $start_time = count_time(5);
+    print "Aaron will check for next cycle after 5 mins at $start_time.\n" .
+          " Sleeping...\n";
+    sleep(300);
+}
+
+print_message("Aaron finished, exiting AARON...\n");
+clean_up($parent);
+close_logfile;
